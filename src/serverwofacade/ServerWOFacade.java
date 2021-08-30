@@ -5,23 +5,24 @@
  */
 
 package serverwofacade;
+
+import java.util.Scanner;
+
 public class ServerWOFacade {
     public static void main(String[] args) {
-        ScheduleServer scheduleServer = new ScheduleServer();
-	scheduleServer.startBooting();
-	scheduleServer.readSystemConfigFile();
-	scheduleServer.init();
-	scheduleServer.initializeContext();
-	scheduleServer.initializeListeners();
-	scheduleServer.createSystemObjects();
-	System.out.println("Start working......");
-	System.out.println("After work done.........");
-	scheduleServer.releaseProcesses();
-	scheduleServer.destory();
-	scheduleServer.destroySystemObjects();
-	scheduleServer.destoryListeners();
-	scheduleServer.destoryContext();
-	scheduleServer.shutdown();
+        FacadeController facadeController = new FacadeController();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("StartServer : s \nStopServer : q \n");
+        String input_from_keyboard = sc.next();
+        switch (input_from_keyboard){
+            case "s":
+                facadeController.startServer();
+                break;
+            case "q":
+                facadeController.stopServer();
+                break;
+        }
+
     }
     
 }
